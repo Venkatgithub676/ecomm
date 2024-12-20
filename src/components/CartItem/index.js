@@ -15,16 +15,14 @@ const CartItem = props => (
       } = value
       const {cartItemDetails} = props
       const {id, title, brand, quantity, price, imageUrl} = cartItemDetails
+
+      // TODO: Update the functionality to increment and decrement quantity of the cart item
+
       const onRemoveCartItem = () => {
         removeCartItem(id)
       }
-      // TODO: Update the functionality to increment and decrement quantity of the cart item
-
       const decItem = () => {
-        if (quantity > 1) {
-          return decrementCartItemQuantity(id)
-        }
-        return removeCartItem(id)
+        decrementCartItemQuantity(id, quantity)
       }
 
       const incItem = () => {
@@ -73,6 +71,7 @@ const CartItem = props => (
             className="delete-button"
             type="button"
             onClick={onRemoveCartItem}
+            data-testid="remove"
           >
             <AiFillCloseCircle color="#616E7C" size={20} />
           </button>

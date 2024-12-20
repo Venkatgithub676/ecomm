@@ -26,7 +26,6 @@ const Cart = () => (
                   onClick={removeAllCartItems}
                   type="button"
                   className="remove-all-btn"
-                  data-testid="remove"
                 >
                   Remove All
                 </button>

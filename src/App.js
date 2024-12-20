@@ -30,18 +30,23 @@ class App extends Component {
     }))
   }
 
-  decrementCartItemQuantity = id => {
-    this.setState(prevState => ({
-      cartList: prevState.cartList.map(each => {
-        if (each.id === id) {
-          return {...each, quantity: each.quantity - 1}
-        }
-        return {...each}
-      }),
-    }))
+  decrementCartItemQuantity = (id, quantity) => {
+    if (quantity > 1) {
+      this.setState(prevState => ({
+        cartList: prevState.cartList.map(each => {
+          if (each.id === id) {
+            return {...each, quantity: each.quantity - 1}
+          }
+          return {...each}
+        }),
+      }))
+    } else {
+      this.removeCartItem(id)
+    }
   }
 
   removeCartItem = id => {
+    console.log(` ${id} removed cart item`)
     this.setState(prevState => ({
       cartList: prevState.cartList.filter(each => each.id !== id),
     }))
@@ -56,7 +61,7 @@ class App extends Component {
       this.setState(prevState => {
         const updatedCartList = prevState.cartList.map(each => {
           if (each.id === product.id) {
-            return {...each, quantity: each.quantity + 1}
+            return {...each, quantity: each.quantity + product.quantity}
           }
           return {...each}
         })
